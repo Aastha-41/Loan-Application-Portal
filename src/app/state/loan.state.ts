@@ -8,7 +8,7 @@ export interface LoanStateModel{
     loans: LoanApplication[];
 }
 @State<LoanStateModel>({
-    name: 'loanState',
+    name: 'loans',
     defaults: {
         loans: []
     }

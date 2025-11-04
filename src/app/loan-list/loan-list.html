@@ -1,0 +1,27 @@
+<section>
+    <input placeholder="Search By Name" (input)="onSearch($any($event.target).value)"/>
+    <table class="loan-table">
+        <thead>
+            <tr>
+                <th>Applicant</th>
+                <th>Amount</th>
+                <th>Tenure Months</th>
+                <th>Product</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let Loan of filtered()">
+                <td>{{Loan.applicant.FullName}}</td>
+                <td>{{Loan.pricing.loanAmount | number}}</td>
+                <td>{{Loan.pricing.tenureMonths}} mo</td>
+                <td>{{Loan.pricing.productName}}</td>
+                <td>
+                    <a [routerLink]="['/details',Loan.id]">View</a> |
+                    <a [routerLink]="['/edit',Loan.id]">Edit</a> |
+                    <button (click)="delete(Loan.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>

@@ -1,9 +1,22 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet, Routes} from '@angular/router';
+import { LoanList } from './loan-list/loan-list';
+import { LoanForm } from './loan-form/loan-form';
+import { LoanDetails } from './loan-details/loan-details';
+import { CommonModule } from '@angular/common';
+
+
+const routes: Routes = [
+  {path: '', component: LoanList},
+  {path: 'new', component:LoanForm},
+  {path: 'edit/:id', component: LoanForm},
+  {path: 'details/:id', component: LoanDetails},
+];
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [RouterOutlet, CommonModule, RouterModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
