@@ -16,5 +16,5 @@ export interface Pricing{
 export interface LoanApplication {
     id: string;
     applicant: Applicant;
-    pricing: Pricing;
+    pricing: Pricing | null;
 }

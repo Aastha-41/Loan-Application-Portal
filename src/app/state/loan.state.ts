@@ -34,14 +34,15 @@ export class LoanState{
   static loansWithEmi(state: LoanStateModel) {
     return state.loans.map(l => ({
       ...l,
-      pricing: {
+      pricing: l.pricing?{
         ...l.pricing,
         emiPerMonth: LoanState.calculateEMI(
-          l.pricing.loanAmount,
-          l.pricing.interestRate,
-          l.pricing.tenureMonths
+          l.pricing?.loanAmount ,
+          l.pricing.interestRate ,
+          l.pricing.tenureMonths 
         )
       }
+      : null
       }));
   }
 
