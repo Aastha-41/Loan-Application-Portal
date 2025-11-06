@@ -16,7 +16,7 @@ export interface LoanStateModel{
 @Injectable()
 export class LoanState{
     @Selector()
-    static loans(state: LoanStateModel){
+    static loans(state: LoanStateModel): LoanApplication[]{
         return state.loans;
     }
     @Selector()
@@ -89,8 +89,6 @@ LoadInitial(ctx: StateContext<LoanStateModel>) {
             )
         });
     }
-
-
 
     @Action(RemoveLoan)
     remove(ctx: StateContext<LoanStateModel>, action: RemoveLoan){

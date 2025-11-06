@@ -4,6 +4,8 @@ import { LoanList } from './loan-list/loan-list';
 import { LoanForm } from './loan-form/loan-form';
 import { LoanDetails } from './loan-details/loan-details';
 import { CommonModule } from '@angular/common';
+import { Store } from '@ngxs/store';
+import { LoadInitial } from './state/loan.actions';
 
 
 const routes: Routes = [
@@ -22,4 +24,7 @@ const routes: Routes = [
 })
 export class App {
   protected readonly title = signal('loan-application-portal');
+  constructor(private store: Store){
+    this.store.dispatch(new LoadInitial());
+  }
 }

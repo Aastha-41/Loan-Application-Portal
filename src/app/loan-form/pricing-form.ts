@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, forwardRef } from "@angular/core";
+import { Component, forwardRef, Input, OnInit } from "@angular/core";
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule, FormGroup, FormControl } from "@angular/forms";
 
 @Component({
@@ -13,19 +13,20 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule, FormGroup
         multi: true
     }]
 })
-export class PricingForm implements ControlValueAccessor {
+export class PricingForm implements ControlValueAccessor, OnInit {
+
     fg = new FormGroup({
-        LoanAmount: new FormControl<number | null>(null),
-        tenureMonths: new FormControl<number | null>(null),
-        productName: new FormControl<string | null>(null),
-        InterestRate: new FormControl<number | null>(null)
+        loanAmount: new FormControl<number>(0),
+        tenureMonths: new FormControl<number>(0),
+        productName: new FormControl<string>(''),
+        interestRate: new FormControl<number>(0)
     });
 
     private onTouched = () => {};
     private onChange: (val: any) => void = () => {};
 
-    constructor(){
-        this.fg.valueChanges.subscribe(v => this.onChange(v));
+    ngOnInit(){
+        this.fg.valueChanges.subscribe(v=> this.onChange(v));
     }
     writeValue(obj: any): void {
         if(obj){

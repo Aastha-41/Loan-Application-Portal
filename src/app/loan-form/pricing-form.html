@@ -1,6 +1,13 @@
 <div [formGroup]="fg">
-    <label> Loan Amount <input formControlName="loanAmount" type="number"></label>
-    <label> Tenure(in Months) <input formControlName="Tenure" type="number"></label>
-    <label>Product Name <input formControlName="Product"></label>
-    <label> Interest(%) <input formControlName="Interest" type="number"></label>
+    <label> Loan Amount </label>
+    <input formControlName="loanAmount" type="number" />
+
+    <label> Tenure(in Months) </label>
+    <input formControlName="tenureMonths" type="number" />
+
+    <label>Product Name </label>
+    <input formControlName="productName" type="text" />
+
+    <label> Interest(%) </label>
+    <input formControlName="interestRate" type="number" />
 </div>
