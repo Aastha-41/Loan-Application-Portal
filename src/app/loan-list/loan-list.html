@@ -17,8 +17,8 @@
                 <td>{{Loan.pricing?.tenureMonths}} mo</td>
                 <td>{{Loan.pricing?.productName}}</td>
                 <td>
-                    <a [routerLink]="['/details',Loan.id]">View</a> |
-                    <a [routerLink]="['/edit',Loan.id]">Edit</a> |
+                    <!-- <a [routerLink]="['/details',Loan.id]">View</a> | -->
+                    <button [routerLink]="['/edit',Loan.id]">Edit</button> |
                     <button (click)="delete(Loan.id)">Delete</button>
                 </td>
             </tr>
