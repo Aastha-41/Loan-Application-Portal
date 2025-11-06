@@ -6,7 +6,7 @@ export class AddLoan{
 }
 export class UpdateLoan{
     static readonly type = '[Loan] Update';
-    constructor(public id: string, public payload: Partial<LoanApplication>){}
+    constructor(public id: string, public loan : LoanApplication){}
 }
 export class RemoveLoan{
     static readonly type = '[Loan] Remove';
