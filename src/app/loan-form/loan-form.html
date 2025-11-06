@@ -1,15 +1,53 @@
 <h2>{{editing? 'Edit' : 'New'}} Application</h2>
 <form [formGroup]="loanForm" (ngSubmit)="save()">
     <fieldset>
-        <label>Full Name <input formControlName="fullName"></label>
-        <label>Email <input formControlName="email"></label>
-        <label>Phone Number <input formControlName="phone"></label>
-        <label>DOB <input type="date" formControlName="dob"></label>
-        <label>Application Date <input type="date" formControlName="applicationDate"></label>
+        <div>
+            <label>Full Name</label>
+            <input type="text" formControlName="fullName">
+            <div *ngIf="loanForm.get('fullName')?.touched && loanForm.get('fullName')?.invalid">
+                <small *ngIf="loanForm.get('fullName')?.errors?.['required']">Name is required.</small>
+                <small *ngIf="loanForm.get('fullName')?.errors?.['minlength']">Name must be at least 4
+                    characters.</small>
+            </div>
+        </div>
+
+        <div>
+            <label>Email:</label>
+            <input type="email" formControlName="email">
+            <div *ngIf="loanForm.get('email')?.touched && loanForm.get('email')?.invalid">
+                <small *ngIf="loanForm.get('email')?.errors?.['required']">Email is required.</small>
+                <small *ngIf="loanForm.get('email')?.errors?.['email']">Invalid email format.</small>
+            </div>
+        </div>
+
+        <div>
+            <label>Phone:</label>
+            <input type="text" formControlName="phone">
+            <div *ngIf="loanForm.get('phone')?.touched && loanForm.get('phone')?.invalid">
+                <small *ngIf="loanForm.get('phone')?.errors?.['required']">Phone is required.</small>
+                <small *ngIf="loanForm.get('phone')?.errors?.['pattern']">Phone must be 10 digits.</small>
+            </div>
+        </div>
+
+        <div>
+            <label>Date of Birth:</label>
+            <input type="date" formControlName="dob">
+            <div *ngIf="loanForm.get('dob')?.touched && loanForm.get('dob')?.invalid">
+                <small>DOB is required.</small>
+            </div>
+        </div>
+
+        <div>
+            <label>Application Date:</label>
+            <input type="date" formControlName="applicationDate">
+            <div *ngIf="loanForm.get('applicationDate')?.touched && loanForm.get('applicationDate')?.invalid">
+                <small>Application Date is required.</small>
+            </div>
+        </div>
     </fieldset>
 
     <h3>Loan & Pricing</h3>
     <app-pricing-form formControlName="pricing"></app-pricing-form>
-    
+
     <button type="submit">Save Application</button>
 </form>

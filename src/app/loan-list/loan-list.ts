@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { LoanApplication } from '../models/loan.model';
 import { RemoveLoan } from '../state/loan.actions';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-loan-list',
@@ -25,7 +25,7 @@ export class LoanList {
       l.applicant.FullName.toLowerCase().includes(query)
     );
   });
-  constructor(private store: Store){
+  constructor(private store: Store, private router: Router){
     const loansSignal = this.store.selectSignal(LoanState.loans);
     this.loans.set(loansSignal());
   }
@@ -50,5 +50,9 @@ export class LoanList {
   }
   localStorage.setItem('editingLoan', JSON.stringify(loan));
   window.location.href = '/loan-form';
+  }
+
+  viewLoan(id: string){
+    this.router.navigate(['/loan-details', id]);
   }
 }

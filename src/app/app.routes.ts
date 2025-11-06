@@ -8,6 +8,6 @@ export const routes: Routes = [
     {path: 'list', component: LoanList},
     {path: 'new', component: LoanForm},
     {path: 'edit/:id', component: LoanForm},
-    {path: 'details/:id', component: LoanDetails},
+    {path: 'loan-details/:id', component: LoanDetails},
     // {path: '**', redirectTo: '/list'}
 ];

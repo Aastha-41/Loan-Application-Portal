@@ -21,10 +21,7 @@ export class LoanState{
     }
     @Selector()
     static getById(id: string){
-        return (state: LoanStateModel) =>{
-          const list = Array.isArray(state.loans)? state.loans : [];
-          return list.find(l => l.id === id);
-        };
+        return (state: LoanStateModel) => state.loans.find(l => l.id === id)
     }
 
     private static calculateEMI(principal: number, annualRate: number, months: number): number {

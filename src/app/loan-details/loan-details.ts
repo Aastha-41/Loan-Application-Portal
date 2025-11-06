@@ -24,15 +24,17 @@ export class LoanDetails {
     const r = (p.interestRate/100)/12;
     if(r==0)  return principal/n;
     const x = Math.pow(1+r,n);
-    const emi = principal*r*x/(x-1);
-    return emi;
+
+    return Math.round(principal*r*x/(x-1));
   });
 
   constructor(private route: ActivatedRoute, private store: Store) {
     this.route.paramMap.subscribe(pm => {
       const id = pm.get('id');
       if(!id) return;
-      const loan = this.store.selectSnapshot(s => (s as any).loanState.loan.find((l:any)=>l.id === id));
+      const loan = this.store.selectSnapshot((state: any) => 
+        state.loans.loans.find((l:any)=>l.id === id)
+    );
       this.loan.set(loan ?? null);
     });
   }
