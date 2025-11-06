@@ -38,4 +38,17 @@ export class LoanList {
       this.store.dispatch(new RemoveLoan(id));
     }
   }
+
+  onEdit(id: string){
+    const loan: LoanApplication | undefined = this.store.selectSnapshot(
+      (state: any) => state.loan.loan?.find((l : LoanApplication) => l.id === id)
+  );
+
+  if(!loan){
+    console.error('Loan not found for id:', id);
+    return;
+  }
+  localStorage.setItem('editingLoan', JSON.stringify(loan));
+  window.location.href = '/loan-form';
+  }
 }

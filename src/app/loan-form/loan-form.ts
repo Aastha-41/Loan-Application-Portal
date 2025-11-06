@@ -45,7 +45,9 @@ export class LoanForm {
         this.id = id;
 
 
-        const loan = this.store.selectSnapshot(LoanState.getById(id));
+        const loan = this.store.selectSnapshot(
+          (state: any) => state.loans.loans?.find((l : LoanApplication) => l.id === id));
+        console.log(loan);
         if(loan){
           this.loanForm.patchValue({
             fullName: loan.applicant.FullName,

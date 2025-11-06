@@ -90,11 +90,10 @@ export class LoanState{
     @Action(UpdateLoan)
     update(ctx: StateContext<LoanStateModel>, action: UpdateLoan) {
         const state = ctx.getState();
-        ctx.patchState({
-            loans: state.loans.map(l =>
-                l.id === action.id ? { ...l, ...action.payload } : l
-            )
-        });
+        const UpdatedLoans : LoanApplication[] = state.loans.map(l =>
+            l.id === action.id ? action.loan: l
+          );
+          ctx.setState({ loans: UpdatedLoans});
     }
 
     @Action(RemoveLoan)
