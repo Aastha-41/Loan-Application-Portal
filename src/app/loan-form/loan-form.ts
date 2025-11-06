@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AddLoan, UpdateLoan } from '../state/loan.actions';
 import { v4 as uuidv4 } from 'uuid';
 import { LoanApplication, Pricing } from '../models/loan.model';
+import { LoanState } from '../state/loan.state';
 
 @Component({
   selector: 'app-loan-form',
@@ -36,13 +37,15 @@ export class LoanForm {
   id?: string;
 
   constructor(private store: Store, private router: Router, private route: ActivatedRoute){
+    console.log('Store Snapshot:', this.store.snapshot());
     this.route.paramMap.subscribe(pm => {
       const id = pm.get('id');
       if(id){
         this.editing = true;
         this.id = id;
 
-        const loan = this.store.selectSnapshot((s: any)=> s.loan?.loans.find((l: any)=>l.id === id));
+
+        const loan = this.store.selectSnapshot(LoanState.getById(id));
         if(loan){
           this.loanForm.patchValue({
             fullName: loan.applicant.FullName,
@@ -50,7 +53,7 @@ export class LoanForm {
             phone: loan.applicant.PhoneNumber,
             dob: loan.applicant.DateOfBirth,
             applicationDate: loan.applicant.applicationDate,
-            pricing: loan.pricing ?? this.defaultPricing
+            pricing: loan.pricing || this.defaultPricing
           });
         }
       }

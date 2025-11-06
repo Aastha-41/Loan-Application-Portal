@@ -20,8 +20,11 @@ export class LoanState{
         return state.loans;
     }
     @Selector()
-    static getById(state: LoanStateModel){
-        return (id: string) => state.loans.find(l => l.id === id) ?? null;
+    static getById(id: string){
+        return (state: LoanStateModel) =>{
+          const list = Array.isArray(state.loans)? state.loans : [];
+          return list.find(l => l.id === id);
+        };
     }
 
     private static calculateEMI(principal: number, annualRate: number, months: number): number {
@@ -30,6 +33,7 @@ export class LoanState{
     const emi = principal * r * Math.pow(1 + r, months) / (Math.pow(1 + r, months) - 1);
     return Math.round(emi);
     }
+
     @Selector()
   static loansWithEmi(state: LoanStateModel) {
     return state.loans.map(l => ({
@@ -46,30 +50,33 @@ export class LoanState{
       }));
   }
 
-    @Action(LoadInitial)
-LoadInitial(ctx: StateContext<LoanStateModel>) {
-  const initial: LoanApplication[] = [
-    {
-      id: '1',
-      applicant: {
-        id: 'a1',
-        FullName: 'Karishma',
-        Email: 'Karishma12@gmail.com',
-        PhoneNumber: '9876543210',
-        DateOfBirth: '1990-05-15',
-        applicationDate: new Date().toISOString().slice(0, 10)
-      },
-      pricing: {
-        loanAmount: 500000,
-        tenureMonths: 24,
-        productName: 'Gold',
-        interestRate: 8
-      }
-    }
-  ];
+  @Action(LoadInitial)
+  LoadInitial(ctx: StateContext<LoanStateModel>) {
+    const state = ctx.getState();
+    if (!state.loans || state.loans.length === 0) {
+      const initial: LoanApplication[] = [
+        {
+          id: '1',
+          applicant: {
+            id: 'a1',
+            FullName: 'Karishma',
+            Email: 'Karishma12@gmail.com',
+            PhoneNumber: '9876543210',
+            DateOfBirth: '1990-05-15',
+            applicationDate: new Date().toISOString().slice(0, 10)
+          },
+          pricing: {
+            loanAmount: 500000,
+            tenureMonths: 24,
+            productName: 'Gold',
+            interestRate: 8
+          }
+        }
+      ];
 
-  ctx.patchState({ loans: initial });
-}
+      ctx.patchState({ loans: initial });
+    }
+  }
 
 
     @Action(AddLoan)
