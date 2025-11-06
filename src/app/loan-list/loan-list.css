@@ -1,4 +1,111 @@
-.loan-table{
+section {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+    font-family: Arial, sans-serif;
+}
+
+section input {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 12px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+section input:focus {
+    outline: none;
+    border-color: #5861c2;
+}
+
+
+
+/* Table Styling */
+.loan-table {
     width: 100%;
     border-collapse: collapse;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.loan-table th,
+.loan-table td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+
+
+.loan-table th {
+    background-color: #5861c2;
+    color: #fff;
+    font-weight: 600;
+}
+
+
+
+.loan-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+
+
+.loan-table tr:hover {
+    background-color: #e9f2ff;
+    transition: background-color 0.2s;
+}
+
+
+
+/* Buttons */
+
+.loan-table button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    margin-right: 5px;
+    color: black;
+    transition: background-color 0.2s;
+}
+
+.loan-table button:hover {
+    opacity: 0.9;
+}
+
+.loan-table button[routerLink*='loan-details'] {
+    background-color: #17a2b8;
+}
+
+.loan-table button[routerLink*='edit'] {
+    background-color: #ffc107;
+    color: #333;
+}
+
+.loan-table button:last-child {
+    background-color: #dc3545;
+}
+
+
+
+/* Responsive Table */
+
+@media (max-width: 768px) {
+    .loan-table th,
+    .loan-table td {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+
+
+    section input {
+        width: 100%;
+        max-width: 100%;
+    }
+
 }

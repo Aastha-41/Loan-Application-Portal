@@ -1,13 +1,36 @@
-<div [formGroup]="fg">
-    <label> Loan Amount </label>
-    <input formControlName="loanAmount" type="number" />
+<div [formGroup]="fg" class="pricing-form-container">
 
-    <label> Tenure(in Months) </label>
-    <input formControlName="tenureMonths" type="number" />
+  <h3>Loan & Pricing</h3>
 
-    <label>Product Name </label>
-    <input formControlName="productName" type="text" />
+  <div class="form-group">
+    <label>Loan Amount</label>
+    <input formControlName="loanAmount" type="number" placeholder="Enter loan amount" />
+    <small class="error" *ngIf="fg.get('loanAmount')?.touched && fg.get('loanAmount')?.invalid">
+      Loan amount is required and must be greater than 0.
+    </small>
+  </div>
 
-    <label> Interest(%) </label>
-    <input formControlName="interestRate" type="number" />
+  <div class="form-group">
+    <label>Tenure (in Months)</label>
+    <input formControlName="tenureMonths" type="number" placeholder="Enter tenure in months" />
+    <small class="error" *ngIf="fg.get('tenureMonths')?.touched && fg.get('tenureMonths')?.invalid">
+      Tenure is required and must be greater than 0.
+    </small>
+  </div>
+
+  <div class="form-group">
+    <label>Product Name</label>
+    <input formControlName="productName" type="text" placeholder="Enter product name" />
+    <small class="error" *ngIf="fg.get('productName')?.touched && fg.get('productName')?.invalid">
+      Product name is required.
+    </small>
+  </div>
+
+  <div class="form-group">
+    <label>Interest (%)</label>
+    <input formControlName="interestRate" type="number" placeholder="Enter interest rate" />
+    <small class="error" *ngIf="fg.get('interestRate')?.touched && fg.get('interestRate')?.invalid">
+      Interest rate is required and must be greater than 0.
+    </small>
+  </div>
 </div>
