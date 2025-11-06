@@ -1,5 +1,11 @@
-<nav>
-  <a routerLink="/">Home</a> |
-  <a routerLink="/new">New Application</a>
-</nav>
-<router-outlet></router-outlet>
+<header class="app-header">
+  <div class="logo">Loan Application Portal</div>
+  <nav class="nav-buttons">
+    <a routerLink="/list" class="btn btn-home">Home</a>
+    <a routerLink="/new" class="btn btn-new">New Application</a>
+  </nav>
+</header>
+
+<main>
+  <router-outlet></router-outlet>
+</main>

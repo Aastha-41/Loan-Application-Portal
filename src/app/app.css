@@ -1,5 +1,72 @@
-.container{
-    padding: 1rem;
-    max-width: 900px;
-    margin: auto;
+/* Header */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #5861c2;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.app-header .logo {
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.nav-buttons a {
+  text-decoration: none;
+  margin-left: 15px;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+/* Home Button */
+.btn-home {
+  background-color: #382bcc;
+  color: #fff;
+}
+
+.btn-home:hover {
+  background-color: #3f828c;
+}
+
+/* New Application Button */
+.btn-new {
+  background-color: #382bcc;
+  color: #fff;
+}
+
+.btn-new:hover {
+  background-color: #218838;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-buttons {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .nav-buttons a {
+    margin: 5px 10px 0 0;
+  }
+}
+
+/* Main content spacing */
+main {
+  padding: 20px;
 }
