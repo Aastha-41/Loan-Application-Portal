@@ -1,14 +1,15 @@
 <h2>{{editing? 'Edit' : 'New'}} Application</h2>
-<form [formGroup]="form" (ngSubmit)="save()">
+<form [formGroup]="loanForm" (ngSubmit)="save()">
     <fieldset>
         <label>Full Name <input formControlName="fullName"></label>
         <label>Email <input formControlName="email"></label>
         <label>Phone Number <input formControlName="phone"></label>
         <label>DOB <input type="date" formControlName="dob"></label>
-        <label>Application Date <input type="date" formControlName="applicationdate"></label>
+        <label>Application Date <input type="date" formControlName="applicationDate"></label>
     </fieldset>
 
     <h3>Loan & Pricing</h3>
     <app-pricing-form formControlName="pricing"></app-pricing-form>
+    
     <button type="submit">Save Application</button>
 </form>
