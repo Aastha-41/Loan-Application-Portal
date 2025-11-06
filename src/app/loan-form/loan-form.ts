@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PricingForm } from './pricing-form';
 import { Store } from '@ngxs/store';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddLoan, UpdateLoan } from '../state/loan.actions';
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4, validate } from 'uuid';
 import { LoanApplication, Pricing } from '../models/loan.model';
 import { LoanState } from '../state/loan.state';
 
@@ -26,11 +26,11 @@ export class LoanForm {
   };
 
   loanForm = new FormGroup({
-    fullName: new FormControl(''),
-    email: new FormControl(''),
-    phone: new FormControl(''),
-    dob: new FormControl(''),
-    applicationDate: new FormControl(new Date().toISOString().slice(0,10)),
+    fullName: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    phone: new FormControl('', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),
+    dob: new FormControl('', [Validators.required]),
+    applicationDate: new FormControl(new Date().toISOString().slice(0,10), [Validators.required]),
     pricing: new FormControl(this.defaultPricing)
   });
   editing = false;
@@ -63,6 +63,12 @@ export class LoanForm {
   }
 
   save(){
+
+    if(this.loanForm.invalid){
+      this.loanForm.markAllAsTouched();
+      return;
+    }
+
     const fv = this.loanForm.getRawValue();
     const pricing: Pricing = fv.pricing ?? this.defaultPricing;
 

@@ -1,4 +1,4 @@
-<div *ngIf="loan() as l">
+<div *ngIf="loan() as l; else noLoan">
   <h2>Application Details:</h2>
   <p><strong>Name:</strong> {{l.applicant.FullName}}</p>
   <p><strong>Email:</strong> {{l.applicant.Email}}</p>
@@ -7,11 +7,17 @@
   <p><strong>Application Date:</strong> {{l.applicant.applicationDate}}</p>
 
   <h3>Loan & Pricing</h3>
-  <p><strong>Amount:</strong> {{l.pricing?.loanAmount | number}}</p>
-  <p><strong>Tenure:</strong> {{l.pricing?.tenureMonths}} months</p>
-  <p><strong>Product:</strong> {{l.pricing?.productName}}</p>
-  <p appHighlightRate [rate]="l.pricing?.interestRate" >
-    <strong>Interest Rate:</strong> {{l.pricing?.interestRate}}%
-  </p>
-  <p><strong>EMI / Month:</strong> {{emi() | number: '1.2-2'}}</p>
+  <div *ngIf="l?.pricing">
+    <p><strong>Amount:</strong> {{l.pricing?.loanAmount | number}}</p>
+    <p><strong>Tenure:</strong> {{l.pricing?.tenureMonths}} months</p>
+    <p><strong>Product:</strong> {{l.pricing?.productName}}</p>
+    <p appHighlightRate [rate]="l.pricing?.interestRate">
+      <strong>Interest Rate:</strong> {{l.pricing?.interestRate}}%
+    </p>
+    <p><strong>EMI / Month:</strong> {{emi() | number: '1.2-2'}}</p>
+  </div>
 </div>
+
+<ng-template #noLoan>
+  <p>Loan not found.</p>
+</ng-template>
