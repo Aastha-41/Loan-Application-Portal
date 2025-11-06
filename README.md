@@ -1,59 +1,35 @@
-# LoanApplicationPortal
+# LOAN APPLICATION PORTAL
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.7.
+## Overview: 
+This is a application basically designed for managing loan application.
 
-## Development server
+## Key Features:
+a. Add a new loan applicantion with entire details of applicant and pricing.
+b. Edit existing loan application.
+c. Delete loan application.
+d. view the details of individual applicant along with its loan & pricing details showing EMI/tenureMonth.
+e. Search option to filter the table.
+f. Basic UI design to look organised with input form validations
 
-To start a local development server, run:
+## Design Decision:
+a. Angular standalone component: each major feature (loan-form, loan-list, loan-details, pricing-form-> nested in loan-form) is     implemented as standalone component.
+b. NGXS State management: application's state is managed via ngxs, allowing easy state tracking and updates. action like addLoan, Updateloan, RemoveLoan, LoadInitial
+c. Signals are used to handle reactive UI updates, that includes EMI Computations and filtered lists.
+d. Input form validators: it ensures that all fields are correctly field before submitting form.
+e. The data persists in local storage.
+f. Basic Styling to look organized where card layout for laon-details and table/grid type to show data and buttons for navigation.
 
-```bash
-ng serve
-```
+## How you can run it locally?
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+1. Clone the repository using : git clone https://github.com/Aastha-41/Loan-Application-Portal.git
+                                cd Loan-Application-Portal
 
-## Code scaffolding
+2. Now, install the required dependencies using : npm install
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+3. Then, Run the angular server using : ng serve
 
-```bash
-ng generate component component-name
-```
+4. In Browser you can visit http://localhost:4200/ to access the application.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
-```bash
-ng generate --help
-```
 
-## Building
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
