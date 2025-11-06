@@ -12,5 +12,5 @@ bootstrapApplication(App, {
     provideRouter(routes),
     importProvidersFrom(NgxsModule.forRoot([LoanState]))
   ]
-});
+}).catch(err => console.error(err));
   
