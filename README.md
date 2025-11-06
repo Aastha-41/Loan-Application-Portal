@@ -22,7 +22,7 @@ f. Basic Styling to look organized where card layout for laon-details and table/
 ## How you can run it locally?
 
 1. Clone the repository using : git clone https://github.com/Aastha-41/Loan-Application-Portal.git
-                                cd Loan-Application-Portal
+- change the directory using: cd Loan-Application-Portal                            
 
 2. Now, install the required dependencies using : npm install
 
