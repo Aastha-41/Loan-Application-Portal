@@ -1,72 +1,97 @@
-/* Header */
+/* Navbar container */
 .app-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
-  background-color: #5861c2;
+  background: linear-gradient(135deg, #4e9ef7, #6c63ff);
   color: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 15px 40px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
   position: sticky;
   top: 0;
   z-index: 1000;
+  animation: slideDown 0.6s ease;
 }
 
-.app-header .logo {
-  font-size: 20px;
-  font-weight: bold;
-  letter-spacing: 1px;
+/* Logo Styling */
+.logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: 0.5px;
 }
 
-.nav-buttons a {
+.logo span {
+  background: linear-gradient(to right, #fff, #e0e0ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Navigation */
+.nav-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+/* Buttons inside nav */
+.nav-buttons .btn {
   text-decoration: none;
-  margin-left: 15px;
-  padding: 8px 18px;
-  border-radius: 6px;
-  font-size: 14px;
+  color: white;
   font-weight: 500;
-  transition: background-color 0.2s;
+  padding: 8px 18px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
 }
 
-/* Home Button */
-.btn-home {
-  background-color: #382bcc;
-  color: #fff;
+/* Hover Effect */
+.nav-buttons .btn:hover {
+  background: white;
+  color: #4e9ef7;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
 }
 
-.btn-home:hover {
-  background-color: #3f828c;
+/* Active link */
+.nav-buttons .active {
+  background: white;
+  color: #4e9ef7;
+  font-weight: 600;
 }
 
-/* New Application Button */
-.btn-new {
-  background-color: #382bcc;
-  color: #fff;
+/* Animation for navbar load */
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
-.btn-new:hover {
-  background-color: #218838;
-}
-
-/* Responsive */
-@media (max-width: 640px) {
+/* Mobile responsiveness */
+@media (max-width: 768px) {
   .app-header {
     flex-direction: column;
-    align-items: flex-start;
+    text-align: center;
+    gap: 10px;
+    padding: 15px 20px;
   }
 
   .nav-buttons {
-    margin-top: 10px;
-    display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
   }
 
-  .nav-buttons a {
-    margin: 5px 10px 0 0;
+  .nav-buttons .btn {
+    padding: 6px 14px;
+    font-size: 0.9rem;
   }
-}
-
-/* Main content spacing */
-main {
-  padding: 20px;
 }

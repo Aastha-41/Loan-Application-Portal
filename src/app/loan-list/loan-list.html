@@ -1,27 +1,47 @@
-<section>
-    <input placeholder="Search By Name" (input)="onSearch($any($event.target).value)"/>
-    <table class="loan-table">
-        <thead>
-            <tr>
-                <th>Applicant</th>
-                <th>Amount</th>
-                <th>Tenure Months</th>
-                <th>Product</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let Loan of filtered()">
-                <td>{{Loan.applicant.FullName}}</td>
-                <td>{{Loan.pricing?.loanAmount| number}}</td>
-                <td>{{Loan.pricing?.tenureMonths}} mo</td>
-                <td>{{Loan.pricing?.productName}}</td>
-                <td>
-                    <button [routerLink]="['/loan-details',Loan.id]" (click)="viewLoan(Loan.id)">View</button> |
-                    <button [routerLink]="['/edit',Loan.id]" (click)="onEdit(Loan.id)">Edit</button> |
-                    <button (click)="delete(Loan.id)">Delete</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<section class="loan-list-container">
+
+  <h2 class="page-title">Loan Applications</h2>
+
+  <!-- Search Bar -->
+  <div class="search-container">
+    <input
+      type="text"
+      placeholder="🔍 Search by Applicant Name..."
+      (input)="onSearch($any($event.target).value)"
+      class="search-input"
+    />  
+  </div>
+
+  <!-- Loan Table -->
+  <table class="loan-table">
+    <thead>
+      <tr>
+        <th>Applicant</th>
+        <th>Loan Amount (₹)</th>
+        <th>Tenure (Months)</th>
+        <th>Product</th>
+        <th>Interest (%)</th>
+        <th>EMI / Month (₹)</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let loan of filtered()">
+        <td>{{ loan.applicant.FullName }}</td>
+        <td>{{ loan.pricing?.loanAmount | number }}</td>
+        <td>{{ loan.pricing?.tenureMonths }}</td>
+        <td>{{ loan.pricing?.productName }}</td>
+        <td>{{ loan.pricing?.interestRate }}</td>
+        <td>₹ {{ loan.pricing?.emiPerMonth | number: '1.2'}}</td>
+
+        <td class="action-buttons">
+          <button class="btn view" [routerLink]="['/loan-details', loan.id]">View</button>
+          <button class="btn edit" [routerLink]="['/edit', loan.id]">Edit</button>
+          <button class="btn delete" (click)="delete(loan.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
 </section>

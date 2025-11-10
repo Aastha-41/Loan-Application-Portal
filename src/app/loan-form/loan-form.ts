@@ -37,7 +37,6 @@ export class LoanForm {
   id?: string;
 
   constructor(private store: Store, private router: Router, private route: ActivatedRoute){
-    console.log('Store Snapshot:', this.store.snapshot());
     this.route.paramMap.subscribe(pm => {
       const id = pm.get('id');
       if(id){
@@ -47,7 +46,6 @@ export class LoanForm {
 
         const loan = this.store.selectSnapshot(
           (state: any) => state.loans.loans?.find((l : LoanApplication) => l.id === id));
-        console.log(loan);
         if(loan){
           this.loanForm.patchValue({
             fullName: loan.applicant.FullName,
@@ -60,6 +58,10 @@ export class LoanForm {
         }
       }
     });
+  }
+
+  cancel(){
+    this.router.navigate(['/']);
   }
 
   save(){

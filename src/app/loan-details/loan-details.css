@@ -1,91 +1,100 @@
-.details-container {
-  max-width: 700px;
+.details-wrapper {
+  max-width: 900px;
   margin: 40px auto;
-  padding: 25px;
-  font-family: Arial, sans-serif;
+  background: #f9fafc;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  animation: fadeIn 0.5s ease;
 }
 
-.details-container h2 {
-  text-align: center;
-  color: #333;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 25px;
 }
 
-.card-section {
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  margin-bottom: 20px;
+.header h2 {
+  font-size: 1.8rem;
+  color: #34495e;
 }
 
-.card-section h3 {
+.back-btn {
+  background: linear-gradient(135deg, #6c63ff, #4e9ef7, rgb(76, 134, 76));
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.back-btn:hover {
+  background: linear-gradient(135deg, #4e9ef7, #6c63ff);
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.info-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-3px);
+}
+
+.info-card h3 {
   margin-bottom: 15px;
-  color: #007bff;
-  border-bottom: 1px solid #ddd;
+  font-size: 1.2rem;
+  color: #2c3e50;
+  border-bottom: 2px solid #ececec;
   padding-bottom: 5px;
 }
 
-.card-section p {
-  margin: 6px 0;
+.info-item {
+  margin: 8px 0;
+  font-size: 0.95rem;
   color: #555;
 }
 
-/* Highlight Rate directive already styles the interest rate */
-
-/* Back Button */
-.back-btn {
-  text-align: center;
+.info-item strong {
+  color: #2c3e50;
 }
 
-.back-btn button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  background-color: #5861c2;
-  color: #fff;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.2s;
+.loan-card {
+  border-left: 5px solid #4e9ef7;
 }
 
-.back-btn button:hover {
-  background-color: #0056b3;
+.info-item.emi {
+  font-weight: 600;
+  color: #16a085;
+  font-size: 1rem;
 }
 
-/* No Loan Section */
 .no-loan {
-  max-width: 500px;
-  margin: 50px auto;
-  padding: 20px;
   text-align: center;
-  background-color: #f8d7da;
-  border-radius: 10px;
-  color: #721c24;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin-top: 100px;
+  background: #fff3cd;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
 }
 
-.no-loan button {
-  margin-top: 15px;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 6px;
-  background-color: #5861c2;
-  color: #fff;
-  cursor: pointer;
+.no-loan h3 {
+  color: #856404;
 }
 
-.no-loan button:hover {
-  background-color: #5861c2;
-}
-
-/* Responsive */
-@media (max-width: 640px) {
-  .details-container {
-    padding: 15px;
-  }
-
-  .card-section {
-    padding: 15px;
-  }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }

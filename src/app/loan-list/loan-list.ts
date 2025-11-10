@@ -26,7 +26,7 @@ export class LoanList {
     );
   });
   constructor(private store: Store, private router: Router){
-    const loansSignal = this.store.selectSignal(LoanState.loans);
+    const loansSignal = this.store.selectSignal(LoanState.loansWithEmi);
     this.loans.set(loansSignal());
   }
 

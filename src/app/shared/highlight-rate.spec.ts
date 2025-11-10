@@ -18,7 +18,7 @@ describe('HighlightRate', () => {
     expect(mockRenderer.setStyle).toHaveBeenCalledWith(
       mockE1.nativeElement,
       'background',
-      'red'
+      'rgb(152, 46, 46)'
     );
   });
   it('should set green background if rate<= threshold', () => {
@@ -28,7 +28,7 @@ describe('HighlightRate', () => {
     expect(mockRenderer.setStyle).toHaveBeenCalledWith(
       mockE1.nativeElement,
       'background',
-      'green'
+      'rgba(125, 184, 125, 1)'
     );
   });
 });

@@ -1,61 +1,68 @@
-<div class="loan-form-container">
-  <h2>{{ editing ? 'Edit Loan Application' : 'New Loan Application' }}</h2>
+<div class="loan-form-page">
+  <div class="loan-form-container">
+    <h2 class="form-title">{{ editing ? 'Edit Loan Application' : 'New Loan Application' }}</h2>
 
-  <form [formGroup]="loanForm" (ngSubmit)="save()">
+    <form [formGroup]="loanForm" (ngSubmit)="save()">
 
-    <!-- Applicant Details -->
-    <div class="form-section">
-      <h3>Applicant Details</h3>
+      <!-- Applicant Details -->
+      <div class="form-section">
+        <h3>Applicant Details</h3>
 
-      <div class="form-group">
-        <label>Full Name</label>
-        <input type="text" formControlName="fullName" placeholder="Enter full name">
-        <small class="error" *ngIf="loanForm.get('fullName')?.touched && loanForm.get('fullName')?.invalid">
-          <span *ngIf="loanForm.get('fullName')?.errors?.['required']">Name is required.</span>
-          <span *ngIf="loanForm.get('fullName')?.errors?.['minlength']">Name must be at least 3 characters.</span>
-        </small>
+        <div class="form-group">
+          <label>Full Name*</label>
+          <input type="text" formControlName="fullName" placeholder="Enter full name">
+          <small class="error" *ngIf="loanForm.get('fullName')?.touched && loanForm.get('fullName')?.invalid">
+            <span *ngIf="loanForm.get('fullName')?.errors?.['required']">Name is required.</span>
+            <span *ngIf="loanForm.get('fullName')?.errors?.['minlength']">Name must be at least 3 characters.</span>
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label>Email*</label>
+          <input type="email" formControlName="email" placeholder="Enter email">
+          <small class="error" *ngIf="loanForm.get('email')?.touched && loanForm.get('email')?.invalid">
+            <span *ngIf="loanForm.get('email')?.errors?.['required']">Email is required.</span>
+            <span *ngIf="loanForm.get('email')?.errors?.['email']">Invalid email format.</span>
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label>Phone Number*</label>
+          <input type="text" formControlName="phone" placeholder="10-digit phone number">
+          <small class="error" *ngIf="loanForm.get('phone')?.touched && loanForm.get('phone')?.invalid">
+            <span *ngIf="loanForm.get('phone')?.errors?.['required']">Phone is required.</span>
+            <span *ngIf="loanForm.get('phone')?.errors?.['pattern']">Phone must be 10 digits.</span>
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label>Date of Birth*</label>
+          <input type="date" formControlName="dob">
+          <small class="error" *ngIf="loanForm.get('dob')?.touched && loanForm.get('dob')?.invalid">
+            DOB is required.
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label>Application Date*</label>
+          <input type="date" formControlName="applicationDate">
+          <small class="error" *ngIf="loanForm.get('applicationDate')?.touched && loanForm.get('applicationDate')?.invalid">
+            Application date is required.
+          </small>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" formControlName="email" placeholder="Enter email">
-        <small class="error" *ngIf="loanForm.get('email')?.touched && loanForm.get('email')?.invalid">
-          <span *ngIf="loanForm.get('email')?.errors?.['required']">Email is required.</span>
-          <span *ngIf="loanForm.get('email')?.errors?.['email']">Invalid email format.</span>
-        </small>
+      <!-- Pricing Section -->
+      <div class="form-section">
+        <h3>Loan & Pricing Details</h3>
+        <app-pricing-form formControlName="pricing"></app-pricing-form>
       </div>
 
-      <div class="form-group">
-        <label>Phone</label>
-        <input type="text" formControlName="phone" placeholder="10-digit phone number">
-        <small class="error" *ngIf="loanForm.get('phone')?.touched && loanForm.get('phone')?.invalid">
-          <span *ngIf="loanForm.get('phone')?.errors?.['required']">Phone is required.</span>
-          <span *ngIf="loanForm.get('phone')?.errors?.['pattern']">Phone must be 10 digits.</span>
-        </small>
+      <!-- Action Buttons -->
+      <div class="form-actions">
+        <button type="submit" class="btn-submit">{{ editing ? 'Update' : 'Add' }} Loan</button>
+        <button type="button" class="btn-cancel" (click)="cancel()">Cancel</button>
       </div>
-
-      <div class="form-group">
-        <label>Date of Birth</label>
-        <input type="date" formControlName="dob">
-        <small class="error" *ngIf="loanForm.get('dob')?.touched && loanForm.get('dob')?.invalid">DOB is required.</small>
-      </div>
-
-      <div class="form-group">
-        <label>Application Date</label>
-        <input type="date" formControlName="applicationDate">
-        <small class="error" *ngIf="loanForm.get('applicationDate')?.touched && loanForm.get('applicationDate')?.invalid">Application date is required.</small>
-      </div>
-    </div>
-
-    <!-- Pricing Section -->
-    <div class="form-section">
-      <h3>Loan & Pricing Details</h3>
-      <app-pricing-form formControlName="pricing"></app-pricing-form>
-    </div>
-
-    <!-- Submit Button -->
-    <div class="form-actions">
-      <button type="submit" class="btn-submit">{{ editing ? 'Update' : 'Add' }} Loan</button>
-    </div>
-  </form>
+    </form>
+  </div>
 </div>
