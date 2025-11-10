@@ -17,10 +17,10 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule, FormGroup
 export class PricingForm implements ControlValueAccessor, OnInit {
 
     fg = new FormGroup({
-        loanAmount: new FormControl<number>(0, [Validators.required, Validators.min(1)]),
-        tenureMonths: new FormControl<number>(0, [Validators.required, Validators.min(1)]),
-        productName: new FormControl<string>('', [Validators.required, Validators.minLength(2)]),
-        interestRate: new FormControl<number>(0, [Validators.required, Validators.min(0.1)])
+        loanAmount: new FormControl<number>(40000, [Validators.required, Validators.min(1)]),
+        tenureMonths: new FormControl<number>(6, [Validators.required, Validators.min(1)]),
+        productName: new FormControl<string>('Silver', [Validators.required, Validators.minLength(2)]),
+        interestRate: new FormControl<number>(5, [Validators.required, Validators.min(0.1)])
     });
 
     private onTouched = () => {};
