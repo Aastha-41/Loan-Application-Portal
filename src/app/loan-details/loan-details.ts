@@ -20,12 +20,12 @@ export class LoanDetails {
       return 0;
     }
     const principal = p.loanAmount;
-    const n = p.tenureMonths;
-    const r = (p.interestRate/100)/12;
-    if(r==0)  return principal/n;
-    const x = Math.pow(1+r,n);
+    const tenureMon = p.tenureMonths;
+    const MonInterest = (p.interestRate/100)/12;
+    if(MonInterest==0)  return principal/tenureMon;
+    const GrowFactor = Math.pow(1+MonInterest,tenureMon);
 
-    return Math.round(principal*r*x/(x-1));
+    return Math.round(principal * MonInterest * GrowFactor/(GrowFactor-1));
   });
 
   constructor(private route: ActivatedRoute, private store: Store) {
